@@ -1,0 +1,35 @@
+.userTable{
+    width: 60%;
+    background-color: white;
+    border-radius: 5px;
+    margin: 50px auto;
+    padding: 50px;
+}
+
+.addButton{
+    text-decoration: none;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.userTable table{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.userTable table thead th{
+    background-color: rgb(20, 93, 93);
+    color: white;
+    
+}
+
+.userTable table tbody td{
+    text-align: center;
+}
+
+.delete_update{
+    display: flex;
+    justify-content: space-around;
+}

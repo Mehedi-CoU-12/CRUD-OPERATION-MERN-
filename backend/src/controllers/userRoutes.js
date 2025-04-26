@@ -108,6 +108,7 @@ export const deleteUser=async(req,res)=>{
 export const updateUser=async(req,res)=>{
     try {
         const{fullname,email}=req.body;
+        const id=req.params.id;
     
         let newUser={};
         if(fullname)
@@ -116,9 +117,8 @@ export const updateUser=async(req,res)=>{
         if(email)
             newUser.email=email;
     
-        const user=await User.findByIdAndUpdate(req?.user?._id,newUser,{
-            new:true,
-            
+        const user=await User.findByIdAndUpdate(id,newUser,{
+            new:true,  
         })
     
         return res.status(200).json({
@@ -128,3 +128,25 @@ export const updateUser=async(req,res)=>{
         console.log(error)
     }
 }   
+
+export const getAllUsers=async(req,res)=>{
+    try {
+        const allUser=await User.find();
+    
+        return res.status(200).json(allUser);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getSingleUser=async (req,res) => {
+    try {
+        const id=req.params.id;
+    
+        const user=await User.findOne({_id:id});
+    
+        return res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+    }
+}
