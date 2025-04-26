@@ -85,16 +85,29 @@ export const logoutUser=async(req,res)=>{
 }
 
 export const deleteUser=async(req,res)=>{
-
+    try {
+        const id=req.params.id;
+    
+        const user=await User.findById(id);
+    
+        if(!user)
+            return res.status(400).json({
+                message:"user not found!"
+            })
+        
+        await user.deleteOne();
+    
+        return res.status(200).json({
+            message:"user deleted successfully!"
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
-
 
 export const updateUser=async(req,res)=>{
     try {
         const{fullname,email}=req.body;
-    
-        console.log('-------------',req.body);
-        console.log('----------user-----------',req.user)
     
         let newUser={};
         if(fullname)
